@@ -133,7 +133,7 @@ exports.delGit = async function (ctx) {
 };
 
 exports.receiveWebHooks = function (ctx) {
-    //console.log(JSON.stringify(req.body));
+    console.log('Body is :'+JSON.stringify(ctx.req.body));
     var body = ctx.request.body, params = {}, cloneUrl = '';
     if (body.payload) {
         params = JSON.parse(body.payload);
@@ -141,7 +141,7 @@ exports.receiveWebHooks = function (ctx) {
         params = body;
     }
     cloneUrl = params.repository.clone_url;
-    //console.log(cloneUrl);
+    console.log('clone url is：'+cloneUrl);
     gitdata.updateWebhook(cloneUrl);
 
     ctx.body = 'receive';
